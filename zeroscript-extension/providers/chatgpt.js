@@ -48,6 +48,7 @@ const ZSProvider = (() => {
     ),
     tooLong: /conversation .{0,20}(too long|getting too long|trop longue)/i,
     busy: /something went wrong|une erreur s.est produite|try again later|réessayer plus tard|temporarily unavailable|rate limit/i,
+    continueBtn: /^(continue|regenerate)$/i,
   };
 
   // ChatGPT streams with a hard stop-button signal for the WHOLE generation

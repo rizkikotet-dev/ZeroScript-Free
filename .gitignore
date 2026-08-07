@@ -1,105 +1,76 @@
 ```
-# Dependencies
-node_modules/
+# Editor/IDE files
+.vscode/
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
-# Environment
+# Environment files
 .env
 .env.local
 *.env.*
 
-# Editors
-.vscode/
-.idea/
+# Logs
+*.log
 
-# Python
+# Dependencies
+node_modules/
+
+# Python specific
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-.git/refs/replace/*
-.pytest_cache/
-.mypy_cache/
-.hypothesis/
-
-# Build artifacts
-dist/
-build/
-*.egg
-*.egg-info/
-.installed.cfg
-*.egg-build/
-MANIFEST
-*.so
-
-# JavaScript/Node.js
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-node_modules/
-jspm_packages/
-*.min.js
-*.min.css
-
-# Compiled and binary files
-*.o
-*.obj
-*.exe
-*.dll
-*.so
-*.a
-*.out
+*.py~
+*.py.class
+*.py.class.*
+*.pyc.class
+*.pyc.class.*
+*.pyo.class
+*.pyo.class.*
+*.pyd.class
+*.pyd.class.*
+*.py~
+*.py~.*
+*.py.class~
+*.py.class~.*
+*.pyc.class~
+*.pyc.class~.*
+*.pyo.class~
+*.pyo.class~.*
+*.pyd.class~
+*.pyd.class~.*
+*.py.class.*
+*.py.class.*.*
+*.pyc.class.*
+*.pyc.class.*.*
+*.pyo.class.*
+*.pyo.class.*.*
+*.pyd.class.*
+*.pyd.class.*.*
+*.py.class~*
+*.py.class~*.*
+*.pyc.class~*
+*.pyc.class~*.*
+*.pyo.class~*
+*.pyo.class~*.*
+*.pyd.class~*
+*.pyd.class~*.*
+*.py.class.*
+*.py.class.*.*
+*.pyc.class.*
+*.pyc.class.*.*
+*.pyo.class.*
+*.pyo.class.*.*
+*.pyd.class.*
+*.pyd.class.*.*
+*.py.class~*
+*.py.class~*.*
+*.pyc.class~*
+*.pyc.class~*.*
+*.pyo.class~*
+*.pyo.class~*.*
+*.pyd.class~*
+*.pyd.class~*.*
 *.class
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-
-# Compression
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+*.class.*
+*.class~*
+*.class~*.*
 ```
