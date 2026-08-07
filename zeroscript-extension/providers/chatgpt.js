@@ -242,6 +242,19 @@ const ZSProvider = (() => {
   const findContinueBtn = () => null;
   const clickContinueBtn = () => false;
 
+  // Composer enforcement (no-op for ChatGPT, composer is always ready)
+  const enforceComposer = () => ({ ready: true });
+  
+  async function ensureComposerReady(reason) {
+    for (let i = 0; i < 20; i++) {
+      if (getEditor()) break;
+      await sleep(150);
+    }
+    const ready = !!getEditor();
+    diag("mode_ready", { reason, provider: "chatgpt", ready });
+    return { ready };
+  }
+
   function snapshot() {
     try {
       const it = lastAssistant();
@@ -468,6 +481,8 @@ const ZSProvider = (() => {
     attachImages: async () => false,
     clearAttachments: () => {},
     conversationKey,
+    enforceComposer,
+    ensureComposerReady,
     installSendHooks,
   };
 })();
