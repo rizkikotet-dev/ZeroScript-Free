@@ -373,6 +373,50 @@ const ZSProvider = (() => {
 
   const conversationKey = () => (location.pathname === "/" ? "" : location.pathname);
 
+  // ── Send hooks ────────────────────────────────────────────────────────────
+  function installSendHooks(handlers) {
+    let lastUserSendAt = 0;
+    const notifyUserSend = () => {
+      const now = Date.now();
+      if (now - lastUserSendAt < 500) return;
+      lastUserSendAt = now;
+      handlers.onUserMessage(assistantCount());
+    };
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" || event.shiftKey || event.isComposing) return;
+      const ed = getEditor();
+      if (!ed || !ed.contains(event.target) || !editorText().trim()) return;
+      if (handlers.isBlocked()) return;
+      if (!handlers.isStarted()) {
+        if (chatIsEmpty()) handlers.onBlockedAttempt();
+        return;
+      }
+      notifyUserSend();
+    }, true);
+
+    document.addEventListener("click", (event) => {
+      const button = event.target?.closest?.("button");
+      if (!button) return;
+      const label = (button.textContent || button.getAttribute("aria-label") || "").trim();
+      if (button.matches(S.stopBtn)) {
+        handlers.onNativeStop();
+        return;
+      }
+      if (RE.continueBtn.test(label)) {
+        handlers.onNativeContinue();
+        return;
+      }
+      if (!button.matches(S.sendBtn) || button.disabled || button.getAttribute("aria-disabled") === "true") return;
+      if (!getEditor() || !editorText().trim() || handlers.isBlocked()) return;
+      if (!handlers.isStarted()) {
+        if (chatIsEmpty()) handlers.onBlockedAttempt();
+        return;
+      }
+      notifyUserSend();
+    }, true);
+  }
+
   // ── Export ────────────────────────────────────────────────────────────────
   return {
     name: "chatgpt",
@@ -399,7 +443,7 @@ const ZSProvider = (() => {
     findContinueBtn,
     clickContinueBtn,
     lastAssistant,
-    lastAssistantId: () => null, // ChatGPT doesn't expose stable IDs
+    lastAssistantId: () => null,
     readAssistant,
     snapshot,
     typeAndSend,
@@ -420,8 +464,9 @@ const ZSProvider = (() => {
         anchor.insertBefore(chip, anchor.firstChild);
       }
     },
-    attachImages: async () => false, // Not implemented yet
+    attachImages: async () => false,
     clearAttachments: () => {},
     conversationKey,
+    installSendHooks,
   };
 })();
