@@ -1,19 +1,29 @@
-﻿# Local-only folders
-Compressed/
-Deprecated/
-ExtensionPresentation/
-presentation/
-docs/
+```
+# Dependencies
+node_modules/
 
-# Zip files
-*.zip
+# Logs and temp files
+*.log
+*.tmp
 
-# Local dev / diagnostic tools
-probe.py
-logs/
+# Environment
+.env
+.env.local
+*.env.*
 
-# System files
-.DS_Store
-Thumbs.db
-desktop.ini
+# Editors
+.vscode/
+.idea/
+
+# Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+.env.local
+.env.*
+```
