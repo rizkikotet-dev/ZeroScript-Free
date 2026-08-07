@@ -359,8 +359,7 @@ const ZSProvider = (() => {
     }
   }
 
-  // ── New chat ──────────────────────────────────────────────────────────────
-  function newChat() {
+  const newChat = () => {
     const btn = document.querySelector('[aria-label*="New chat"], [data-testid*="new-chat"], button[class*="new-chat"]');
     if (btn) { btn.click(); return true; }
     // Fallback: navigate to root
@@ -370,7 +369,9 @@ const ZSProvider = (() => {
       return true;
     }
     return false;
-  }
+  };
+
+  const conversationKey = () => (location.pathname === "/" ? "" : location.pathname);
 
   // ── Export ────────────────────────────────────────────────────────────────
   return {
@@ -419,5 +420,8 @@ const ZSProvider = (() => {
         anchor.insertBefore(chip, anchor.firstChild);
       }
     },
+    attachImages: async () => false, // Not implemented yet
+    clearAttachments: () => {},
+    conversationKey,
   };
 })();
